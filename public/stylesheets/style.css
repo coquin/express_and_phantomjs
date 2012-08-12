@@ -1,8 +1,91 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #3c3c3c;
+  font: .875em "Lucida Grande", Helvetica, Arial, sans-serif;
+  line-height: 1.4;
 }
 
-a {
-  color: #00B7FF;
+
+#content {
+  margin: 0 auto;
+  width: 600px;
+  /* background: #9baab3; */
+}
+
+.b-todos-header h1 {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.b-create-todo-form {
+  margin: 0;
+  padding: 20px 10px;
+  border-bottom: 1px #ccc solid;
+}
+
+.b-text-input {
+  display: block;
+  padding: 4px 6px;
+  border: 1px #ccc solid;
+
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+
+  background-clip: padding-box;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+}
+
+.b-text-input input {
+  display: block;
+  padding: 0;
+  width: 100%;
+  outline: none;
+  border: 0;
+  font-size: 1.6em;
+  -webkit-appearance: none;
+}
+
+.b-todos-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.b-todos-list-item {
+  position: relative;
+  margin: 0;
+  padding: 10px 32px 10px 10px;
+  border-bottom: 1px #ccc solid;
+}
+
+.b-todos-list-item input {
+  float: left;
+  margin-top: .3em;
+}
+
+.b-todos-list-item-text {
+  margin-left: 10px;
+}
+
+.b-todos-list-item--done .b-todos-list-item-text {
+  color: #aaa;
+  text-decoration: line-through;
+}
+
+.b-remove-icon {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  overflow: hidden;
+  margin-top: -8px;
+  width: 16px;
+  height: 16px;
+  background: url('../images/icon_close.png');
+}
+
+.b-todos-footer {
+  font-size: .857em;
+  padding: 10px;
 }
