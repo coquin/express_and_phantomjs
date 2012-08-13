@@ -1,5 +1,13 @@
+/*global
+  TodoModel
+*/
 var TodosCollection = Backbone.Collection.extend({
 
-  // TBD
+  model: TodoModel,
+  localStorage: new Store('todos-backbone'),
+
+  getUndoneTodosCount: function() {
+    return this.where({ isDone: false }).length;
+  }
 
 });

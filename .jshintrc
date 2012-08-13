@@ -1,0 +1,15 @@
+{
+  "predef": [
+    "window",
+    "document",
+    "console",
+    "$",
+    "jQuery",
+    "_",
+    "Backbone",
+    "Handlebars"
+  ],
+
+  "curly": true,
+  "expr": true      // Allow statements like `foo && foo()`
+}
