@@ -1,11 +1,10 @@
 // Render View using Handlebars templates
 Backbone.View.prototype.render = function(data) {
-  var data, compiled;
+  var data;
 
   if (this.template) {
     data = this.model ? this.model.toJSON() : (data || {});
-    compiled = Handlebars.compile(this.template.join('\n'));
-    this.el.innerHTML = compiled(data);
+    this.el.innerHTML = this.template(data);
   }
 
   return this;
