@@ -16,7 +16,13 @@ define(['sandbox', './todo', '../collections/todos'], function(sandbox, TodoView
           .bind('reset', this.addAll, this)
           .bind('add', this.addOne, this);
 
-      this.collection.fetch();
+      this.collection.fetch({
+        success: function(collection) {
+          if (!collection.length) {
+            collection.reset(window.todosBootstrap);
+          }
+        }
+      });
     },
 
     addAll: function() {
