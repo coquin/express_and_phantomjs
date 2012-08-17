@@ -14,7 +14,6 @@ Simple proof of concept of routing requests from search engine crawlers through 
 
 ```
 brew update
-
 brew install phantomjs
 ```
 
@@ -22,19 +21,18 @@ brew install phantomjs
 
 ```
 git clone /url-to-repo/
-
 cd express_and_phantomjs
-
 npm install
-
 node app.js
 ```
 
-A demo page would be available on `http://localhost:8888`. It contains a simple Todos app, based on [Backbone.js](http://backbonejs.org/) and [Backbone Aura](https://github.com/addyosmani/backbone-aura]). I've added four todos as a default content.
+A demo page would be available at `http://localhost:8888`. It contains a simple Todos app, based on [Backbone.js](http://backbonejs.org/) and [Backbone Aura](https://github.com/addyosmani/backbone-aura]). I've added four todos as a default content.
+
+![Smaller icon](http://i.imgur.com/r667P.png "Page screenshot.")
 
 I use PhantomJS to render this page in a headless browser and send the resulting HTML to search engine crawlers (this makes this website fully reachable for them despite of JavaScript based content rendering).
 
-Here is a dump of server response without PhantomJS being involved (i use [HTTP Client](http://ditchnet.org/httpclient/) app for Mac):
+Here is a dump of server response without PhantomJS being involved:
 
 
 	<!DOCTYPE html>
