@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -32,14 +31,14 @@ app.configure('development', function(){
 });
 
 app.get('/', function(req, res) {
-  // Match only Googlebot search engine crawler
+  // Простенькое регулярное выражение для детектирования Гуглбота
   var seCraulersUA_Match = /Googlebot|\+http:\/\/www\.google\.com\/bot.html/gi;
 
   if (seCraulersUA_Match.test(req.useragent.source)) {
     console.log('>>> Search engine crawler detected! <<<');
 
-    // Asyncronously load requested page in PhantomJS headless browser,
-    // receive generated page source and send it to the crawler
+    // Пропускаем запрашиваемую страницу через скрипт PhantomJS,
+    // в ответ получаем отрендеренный HTML, который и скармливаем Гуглботу
     exec('phantomjs proxy.js http://' + req.headers.host, function(error, stdout) {
       res.send(stdout);
     });

@@ -1,15 +1,17 @@
-// Renders a page specified by url
-// and returns page HTML contents
+// Рендерит запрашиваемую по `url` страницу
+// и возвращает её HTML
 var page = require('webpage').create(),
     url = phantom.args[0];
 
 page.onLoadFinished = function(status) {
-  // Just give a page 3 seconds to render
+  // В целях простой демонстрации не сильно
+  // заморачиваемся и просто считаем, что за
+  // три секунды страничка будет готова
   setTimeout(function() {
-    // Save page screenshot
+    // Сохраняем скриншот страницы
     page.render('page_snapshot.png');
 
-    // Respond with the page content
+    // и отвечаем её содержимым
     console.log(page.content);
     phantom.exit();
   }, 3000);

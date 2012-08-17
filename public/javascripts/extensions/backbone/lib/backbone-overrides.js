@@ -1,4 +1,4 @@
-// Render View using Handlebars templates
+// Рендерим представление используя Handlebars
 Backbone.View.prototype.render = function(data) {
   var data;
 

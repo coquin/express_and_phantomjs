@@ -40,8 +40,8 @@ define(['sandbox', 'text!../templates/todoTemplate.html'], function(sandbox, tod
       this.model.destroy();
     },
 
-    // Override default `remove` method to perform clean up
-    // before actual element remove
+    // Переопределим стандартный метод `remove` для выполнения
+    // дополнительных действий по очистке за собой
     remove: function() {
       this.model.off();
       this.$el
