@@ -146,7 +146,7 @@
 #### Установка
 
 ```
-git clone /url-to-repo/
+git clone git@github.com:coquin/express_and_phantomjs.git
 cd express_and_phantomjs
 npm install
 node app.js
