@@ -1,39 +1,14 @@
 # Express and PhantomJS
 
-Simple proof of concept of routing requests from search engine crawlers through PhantomJS to get full HTML and content of web sites heavily loaded with JavaScript, AJAX and client-side rendering.
+Простая демонстрация возможности предоставления роботам поисковых систем полноценного контента страниц, содержимое которых отрисовывается JavaScript шаблонизаторами.
 
-### Prerequirements
-
-* NodeJS
-* PhantomJS
-
-
-### Setup
-
-#### Install PhantomJS
-
-```
-brew update
-brew install phantomjs
-```
-
-#### Clone the repo
-
-```
-git clone /url-to-repo/
-cd express_and_phantomjs
-npm install
-node app.js
-```
-
-A demo page would be available at `http://localhost:8888`. It contains a simple Todos app, based on [Backbone.js](http://backbonejs.org/) and [Backbone Aura](https://github.com/addyosmani/backbone-aura]). I've added four todos as a default content.
+В качестве примера используется простой, всем уже набивший оскомину, модуль Todo, написанный на [Backbone.js](http://backbonejs.org/) поверх архитектуры [Backbone Aura](https://github.com/addyosmani/backbone-aura]):
 
 ![Smaller icon](http://i.imgur.com/r667P.png "Page screenshot.")
 
-I use PhantomJS to render this page in a headless browser and send the resulting HTML to search engine crawlers (this makes this website fully reachable for them despite of JavaScript based content rendering).
+В качестве контента по умолчанию я добавил четыре модели, которые якобы «запрашиваются» с сервера при инициализации приложения.
 
-Here is a dump of server response without PhantomJS being involved:
-
+Вот что получает обычный поисковый робот, заходя на эту страницу (без применения PhantomJS):
 
 	<!DOCTYPE html>
 	<html>
@@ -76,9 +51,9 @@ Here is a dump of server response without PhantomJS being involved:
 	  </body>
 	</html>
 
-There are no actual data in this dump, because everything is fetched and rendered by JavaScript framework.
+Только базовая разметка и никаких данных. Робот не сможет корректно проиндексировать эту страницу.
 
-In ExpressJS application main file, `app.js`, I added a condition to route requests from Google Bot (by detecting it's specific `User-Agent` request header) through PhantomJS, and this is how the server response looks like:
+Теперь попробуем, определяя по заголовку User-Agent, перенаправлять запросы от поисковых роботов на headless браузер, который отрисует страницу, выполнит все скрипты. Готовую страницу со всеми нужными данными мы просто скормим роботу, вот что он получит:
 
 	<!DOCTYPE html>
 	<html>
@@ -155,4 +130,30 @@ In ExpressJS application main file, `app.js`, I added a condition to route reque
 	  </body>
 	</html>
 
-PhantomJS renders the whole page, waits until all data fetched and rendered and then returns HTML contents of the page to requester. Bingo!
+Робот получает точно такую же «картинку», что и пользователь в обычном браузере.
+
+### Как это завести
+
+Нам потребуются:
+
+* NodeJS (и [npm](https://github.com/isaacs/npm)) 
+* PhantomJS
+
+#### Установка
+
+```
+git clone /url-to-repo/
+cd express_and_phantomjs
+npm install
+node app.js
+```
+
+Демо-сервер (на [Express](http://expressjs.com/)) будет доступен по адресу `http://localhost:8888`.
+
+Далее любым удобным способом нужно эмулировать посещение страницы поисковым роботом. Вот пример как это сделать с помощью приложения [HTTP Client](http://ditchnet.org/httpclient/) для Mac:
+
+![Smaller icon](http://imgur.com/y7EPF.png "Response screenshot.")
+
+Указываем для заголовока User-Agent значение `Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)`.
+
+Любуемся, экспериментируем.
